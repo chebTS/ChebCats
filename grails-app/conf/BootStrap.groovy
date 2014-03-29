@@ -30,8 +30,8 @@ class BootStrap {
         def cat3 = new ua.cats.Category(name: "Things").save(flush: true)
         def cat4 = new ua.cats.Category(name: "Other").save(flush: true)
 
-        def newAnnouncement = new Announcement(name: "Test1", category: cat1).save(flush: true)
-        def newAnnouncement2 = new Announcement(name: "Test2", category: cat3).save(flush: true)
+        def newAnnouncement = new Announcement(title: "Test1", category: cat1, person: user).save(flush: true)
+        def newAnnouncement2 = new Announcement(title: "Test2", category: cat3, person: user).save(flush: true)
 
 
     }

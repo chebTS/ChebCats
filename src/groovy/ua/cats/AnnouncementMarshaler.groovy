@@ -10,14 +10,16 @@ class AnnouncementMarshaler {
         JSON.registerObjectMarshaller( Announcement) { Announcement announcement ->
             return [
                     id : announcement.id,
-                    name : announcement.name,
-                    cat_id : announcement.category.id,
+                    title : announcement.title,
+                    category : announcement.category.id,
+                    person : announcement.person.id,
                     lat : announcement.lat,
-                    lng : announcement.lng,
-                    is_lost : announcement.isLost,
+                    lon : announcement.lon,
+                    islost : announcement.isLost,
                     photo : announcement.photo,
                     date : announcement.dateCreated,
-                    description : announcement.description
+                    about : announcement.about,
+                    address : announcement.address
             ]
         }
     }

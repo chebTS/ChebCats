@@ -2,24 +2,27 @@ package ua.cats
 
 class Announcement {
     Category category
-    //todo
-    //Person preson
-    String name
+    Person person
+    String title
     Boolean isLost
     String photo
-    String description
+    String about
+    String address
     Date dateCreated
     Double lat
-    Double lng
+    Double lon
+
 
     static constraints = {
         category nullable: false
-        name blank: false, nullable: false
+        person nullable: false
+        title blank: false, nullable: false
         isLost nullable: true
         photo nullable: true
-        description nullable: true
+        about nullable: true
         dateCreated nullable: true
+        address nullable: true
         lat nullable: true
-        lng nullable: true
+        lon nullable: true
     }
 }
