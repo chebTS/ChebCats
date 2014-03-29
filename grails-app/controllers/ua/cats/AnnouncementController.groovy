@@ -3,6 +3,8 @@ package ua.cats
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
+import javax.swing.JScrollBar
+
 import static org.springframework.http.HttpStatus.*
 
 class AnnouncementController {
@@ -11,7 +13,21 @@ class AnnouncementController {
 
     @Secured(['ROLE_USER'])
     def index(Integer max) {
-        render Announcement.list() as JSON
+        if (params.id){
+            render Announcement.findAllById(params.id) as JSON
+        }else{
+            render Announcement.list() as JSON
+        }
+    }
+
+    @Secured(['ROLE_USER'])
+    def byid(){
+        render Announcement.findAllById(params.id) as JSON
+    }
+
+    @Secured(['ROLE_USER'])
+    def bycat(){
+        render Announcement.findAllByCategory(Category.findById(params.id)) as JSON
     }
 
     def show(Announcement announcementInstance) {

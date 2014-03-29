@@ -33,7 +33,9 @@ class BootStrap {
 
         def newAnnouncement = (new Announcement(title: "Test1", category: cat1, person: user)).save(flush: true)
 
-        def newAnnouncement2 = new Announcement(title: "Test2", category: cat3, person: user).save(flush: true)
+        def newAnnouncement2 = (new Announcement(title: "Test31", category: cat3, person: user)).save(flush: true)
+
+        def newAnnouncement3 = (new Announcement(title: "Test32", category: cat3, person: user)).save(flush: true)
 
 
         def img1 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg", announcement: newAnnouncement)
