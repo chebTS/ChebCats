@@ -1,6 +1,7 @@
 package ua.cats
 
 class Announcement {
+    static hasMany = [images : Image]
     Category category
     Person person
     String title
@@ -17,6 +18,7 @@ class Announcement {
         category nullable: false
         person nullable: false
         title blank: false, nullable: false
+        images nullable: true
         isLost nullable: true
         photo nullable: true
         about nullable: true

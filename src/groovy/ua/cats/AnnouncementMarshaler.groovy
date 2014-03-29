@@ -15,6 +15,7 @@ class AnnouncementMarshaler {
                     person : announcement.person.id,
                     lat : announcement.lat,
                     lon : announcement.lon,
+                    images : announcement.images,
                     islost : announcement.isLost,
                     photo : announcement.photo,
                     date : announcement.dateCreated,

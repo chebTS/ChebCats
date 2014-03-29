@@ -1,5 +1,6 @@
 import org.springframework.web.context.support.WebApplicationContextUtils
 import ua.cats.Announcement
+import ua.cats.Image
 import ua.cats.Person
 import ua.cats.Role
 import ua.cats.UserRole
@@ -30,8 +31,20 @@ class BootStrap {
         def cat3 = new ua.cats.Category(name: "Things").save(flush: true)
         def cat4 = new ua.cats.Category(name: "Other").save(flush: true)
 
-        def newAnnouncement = new Announcement(title: "Test1", category: cat1, person: user).save(flush: true)
+        def newAnnouncement = (new Announcement(title: "Test1", category: cat1, person: user)).save(flush: true)
+
         def newAnnouncement2 = new Announcement(title: "Test2", category: cat3, person: user).save(flush: true)
+
+
+        def img1 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg", announcement: newAnnouncement)
+                    .save(flush: true)
+        def img2 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg", announcement: newAnnouncement)
+                .save(flush: true)
+        def img3 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg", announcement: newAnnouncement)
+                .save(flush: true)
+//        def img1 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg").save(flush: true)
+//        def img2 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg").save(flush: true)
+//        def img3 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg").save(flush: true)
 
 
     }
