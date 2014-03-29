@@ -17,7 +17,13 @@ class PersonMarshaler {
                     phoneNumber : person.phoneNumber,
                     photo : person.photo,
                     rating : person.rating,
-                    username : person.username
+                    username : person.username,
+                    facebookURL : person.facebookURL,
+                    twitterURL : person.twitterURL,
+                    googlePlusURL : person.googlePlusURL,
+                    vkURL : person.vkURL,
+                    skype : person.skype
+
             ]
         }
     }

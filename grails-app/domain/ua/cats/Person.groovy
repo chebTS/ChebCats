@@ -9,6 +9,11 @@ class Person extends User {
     String phoneNumber
     String photo
     String city
+    String facebookURL
+    String twitterURL
+    String googlePlusURL
+    String vkURL
+    String skype
 
     static constraints = {
         email unique: true, blank: false
@@ -18,5 +23,10 @@ class Person extends User {
         phoneNumber nullable: true
         photo nullable: true
         city nullable: true
+        facebookURL nullable: true
+        twitterURL nullable: true
+        googlePlusURL nullable: true
+        vkURL nullable: true
+        skype nullable: true
     }
 }
