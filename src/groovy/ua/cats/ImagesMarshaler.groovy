@@ -10,7 +10,7 @@ class ImagesMarshaler {
         JSON.registerObjectMarshaller(Image) { Image image->
             return [
                     id : image.id,
-                    url : image.url,
+                    url : image.url
             ]
         }
     }
