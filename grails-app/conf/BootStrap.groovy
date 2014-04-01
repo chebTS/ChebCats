@@ -26,10 +26,10 @@ class BootStrap {
                         password: "foo",
                         enabled: true).save(flush: true)
         UserRole.create(user, userRole, true)
-        def cat1 = new ua.cats.Category(name: "Pets").save(flush: true)
-        def cat2 = new ua.cats.Category(name: "People").save(flush: true)
+        def cat1 = new ua.cats.Category(name: "People").save(flush: true)
+        def cat2 = new ua.cats.Category(name: "Animals").save(flush: true)
         def cat3 = new ua.cats.Category(name: "Things").save(flush: true)
-        def cat4 = new ua.cats.Category(name: "Other").save(flush: true)
+        def cat4 = new ua.cats.Category(name: "Crimes").save(flush: true)
 
         def newAnnouncement = (new Announcement(title: "Test1", category: cat1, person: user)).save(flush: true)
 

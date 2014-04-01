@@ -2,6 +2,7 @@ package ua.cats
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -12,20 +13,48 @@ class PersonController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     @Secured(['ROLE_USER'])
-    def index(Integer max) {
+    def index() {
         render Person.list() as JSON
-//        params.max = Math.min(max ?: 10, 100)
-//        respond Person.list(params), model: [personInstanceCount: Person.count()]
     }
 
+    @Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
+    def create() {
+        if (Person.findByEmail(params.email) ){
+            JSONObject jRoot = new JSONObject();
+            jRoot.put("statusCode",409)
+            jRoot.put("message:","Email already exist.")
+            render  jRoot as JSON
+        } else if (Person.findByUsername(params.username)){
+            JSONObject jRoot = new JSONObject();
+            jRoot.put("statusCode",409)
+            jRoot.put("message:","Username already exist.")
+            render  jRoot as JSON
+        }else{
+            def person = new Person(
+                    rating: 0,
+                    nick: params.nick,
+                    familyName: params.familyName,
+                    phoneNumber: params.phoneNumber,
+                    photo: params.photo,
+                    city: params.city,
+                    facebookURL: params.facebookURL,
+                    twitterURL: params.twitterURL,
+                    googlePlusURL: params.googlePlusURL,
+                    vkURL: params.vkURL,
+                    skype: params.skype,
+                    username: params.username,
+                    email: params.email,
+                    password: params.password).save(flush: true)
+            def userRole = Role.findByAuthority("ROLE_USER") ?: new Role(authority: "ROLE_USER").save(flush: true)
+            UserRole.create(person, userRole, true)
+            render person as JSON
+        }
+    }
+/*
     def show(Person personInstance) {
         respond personInstance
     }
 
-    def create() {
-        respond new Person(params)
-    }
-/*
     @Transactional
     def save(Person personInstance) {
         if (personInstance == null) {
