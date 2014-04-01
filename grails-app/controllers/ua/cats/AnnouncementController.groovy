@@ -61,7 +61,7 @@ class AnnouncementController {
         }else{
             JSONObject jRoot = new JSONObject();
             jRoot.put("statusCode",409)
-            jRoot.put("message:","Not enough parameters. Add: 'userid', 'catid' and 'title'")
+            jRoot.put("message","Not enough parameters. Add: 'userid', 'catid' and 'title'")
             render jRoot as JSON
         }
 

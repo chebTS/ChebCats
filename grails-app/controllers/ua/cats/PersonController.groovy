@@ -22,12 +22,12 @@ class PersonController {
         if (Person.findByEmail(params.email) ){
             JSONObject jRoot = new JSONObject();
             jRoot.put("statusCode",409)
-            jRoot.put("message:","Email already exist.")
+            jRoot.put("message","Email already exist.")
             render  jRoot as JSON
         } else if (Person.findByUsername(params.username)){
             JSONObject jRoot = new JSONObject();
             jRoot.put("statusCode",409)
-            jRoot.put("message:","Username already exist.")
+            jRoot.put("message","Username already exist.")
             render  jRoot as JSON
         }else{
             def person = new Person(
