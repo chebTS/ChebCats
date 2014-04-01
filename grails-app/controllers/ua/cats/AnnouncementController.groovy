@@ -2,6 +2,7 @@ package ua.cats
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 import javax.swing.JScrollBar
 
@@ -30,14 +31,48 @@ class AnnouncementController {
         render Announcement.findAllByCategory(Category.findById(params.id)) as JSON
     }
 
+    @Secured(['ROLE_USER'])
+    def byuser(){
+        render Announcement.findAllByPerson(Person.findById(params.id)) as JSON
+    }
+
+    @Secured(['ROLE_USER'])
+    def create() {
+        if (params.containsKey("userid") && params.containsKey("catid") &&  params.containsKey("title")){
+            def person = Person.findById(params.userid);
+            if (person){
+
+                def cat = Category.findById(params.catid)
+                if (cat){
+                    def ann = new Announcement(
+                            person: person,
+                            category: cat,
+                            lat: params.lat,
+                            lon: params.lon,
+                            islost: params.islost,
+                            date: params.date,
+                            about: params.about,
+                            photo: params.photo,
+                            address: params.address,
+                            title: params.title).save(flush: true)
+                    render ann as JSON
+                }
+            }
+        }else{
+            JSONObject jRoot = new JSONObject();
+            jRoot.put("statusCode",409)
+            jRoot.put("message:","Not enough parameters. Add: 'userid', 'catid' and 'title'")
+            render jRoot as JSON
+        }
+
+    }
+
+
+/*
     def show(Announcement announcementInstance) {
         respond announcementInstance
     }
 
-    def create() {
-        respond new Announcement(params)
-    }
-/*
     @Transactional
     def save(Announcement announcementInstance) {
         if (announcementInstance == null) {
