@@ -10,7 +10,7 @@ import grails.transaction.Transactional
 //@Transactional(readOnly = true)
 class PersonController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [index: "GET", create: "POST"]
 
     @Secured(['ROLE_USER'])
     def index() {
@@ -20,15 +20,15 @@ class PersonController {
     @Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
     def create() {
         if (Person.findByEmail(params.email) ){
-            JSONObject jRoot = new JSONObject();
-            jRoot.put("statusCode",409)
-            jRoot.put("message","Email already exist.")
-            render  jRoot as JSON
+            def result = [:]
+            result["statusCode"] = 409
+            result["message"] = "Email already exist."
+            render( status: 409, text: result as JSON) as JSON
         } else if (Person.findByUsername(params.username)){
-            JSONObject jRoot = new JSONObject();
-            jRoot.put("statusCode",409)
-            jRoot.put("message","Username already exist.")
-            render  jRoot as JSON
+            def result = [:]
+            result["statusCode"] = 409
+            result["message"] = "Username already exist."
+            render( status: 409, text: result as JSON) as JSON
         }else{
             def person = new Person(
                     rating: 0,

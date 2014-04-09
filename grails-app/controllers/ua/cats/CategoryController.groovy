@@ -14,8 +14,6 @@ class CategoryController {
     @Secured(['ROLE_USER'])
     def index(Integer max) {
         render Category.list() as JSON
-//        params.max = Math.min(max ?: 10, 100)
-//        respond Category.list(params), model: [categoryInstanceCount: Category.count()]
     }
 
     def show(Category categoryInstance) {

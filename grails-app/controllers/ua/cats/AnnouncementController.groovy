@@ -10,7 +10,8 @@ import static org.springframework.http.HttpStatus.*
 
 class AnnouncementController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    //static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [create:'POST', byuser:'GET', bycat: 'GET', byid: 'GET',index: 'GET']
 
     @Secured(['ROLE_USER'])
     def index(Integer max) {
@@ -38,36 +39,28 @@ class AnnouncementController {
 
     @Secured(['ROLE_USER'])
     def create() {
-        if (params.containsKey("userid") && params.containsKey("catid") &&  params.containsKey("title")){
-            def person = Person.findById(params.userid);
-            if (person){
-
-                def cat = Category.findById(params.catid)
-                if (cat){
-                    def ann = new Announcement(
-                            person: person,
-                            category: cat,
-                            lat: params.lat,
-                            lon: params.lon,
-                            islost: params.islost,
-                            date: params.date,
-                            about: params.about,
-                            photo: params.photo,
-                            address: params.address,
-                            title: params.title).save(flush: true)
-                    render ann as JSON
-                }
-            }
+        def person = Person.findById(params.userid)
+        def cat = Category.findById(params.catid)
+        if((person) && (cat) && (params.title)){
+            def ann = new Announcement(
+                    person: person,
+                    category: cat,
+                    lat: params.lat,
+                    lon: params.lon,
+                    islost: params.islost,
+                    date: params.date,
+                    about: params.about,
+                    photo: params.photo,
+                    address: params.address,
+                    title: params.title).save(flush: true)
+            render ann as JSON
         }else{
-            JSONObject jRoot = new JSONObject();
-            jRoot.put("statusCode",409)
-            jRoot.put("message","Not enough parameters. Add: 'userid', 'catid' and 'title'")
-            render jRoot as JSON
+            def result = [:]
+            result["statusCode"] = 409
+            result["message"] = "Not enough parameters. Add: 'userid', 'catid' and 'title'"
+            render( status: 409, text: result as JSON) as JSON
         }
-
     }
-
-
 /*
     def show(Announcement announcementInstance) {
         respond announcementInstance
