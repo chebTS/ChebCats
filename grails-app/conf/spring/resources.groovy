@@ -1,5 +1,6 @@
 import ua.cats.AnnouncementMarshaler
 import ua.cats.CategoryMarshaller
+import ua.cats.FindedMarshaller
 import ua.cats.ImagesMarshaler
 import ua.cats.PersonMarshaler
 import util.marshalling.CustomObjectMarshallers
@@ -11,6 +12,7 @@ beans = {
                 new CategoryMarshaller(),
                 new AnnouncementMarshaler(),
                 new PersonMarshaler(),
+                new FindedMarshaller(),
                 new ImagesMarshaler()
 
         ]

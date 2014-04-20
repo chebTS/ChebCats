@@ -1,7 +1,7 @@
 package ua.cats
 
 class Person extends User {
-    static hasMany = [announcement : Announcement]
+    static hasMany = [announcement : Announcement, finded : Finded]
     String email
     Double rating
     String nick

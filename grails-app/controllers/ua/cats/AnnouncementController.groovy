@@ -14,7 +14,7 @@ class AnnouncementController {
     static allowedMethods = [create:'POST', byuser:'GET', bycat: 'GET', byid: 'GET',index: 'GET']
 
     @Secured(['ROLE_USER'])
-    def index(Integer max) {
+    def index() {
         if (params.id){
             render Announcement.findAllById(params.id) as JSON
         }else{

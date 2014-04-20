@@ -1,7 +1,7 @@
 package ua.cats
 
 class Announcement {
-    static hasMany = [images : Image]
+    static hasMany = [images : Image, finded : Finded]
     Category category
     Person person
     String title
