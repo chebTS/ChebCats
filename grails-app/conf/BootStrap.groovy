@@ -38,12 +38,12 @@ class BootStrap {
         def newAnnouncement3 = (new Announcement(title: "Test32", category: cat3, person: user)).save(flush: true)
 
 
-        def img1 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg", announcement: newAnnouncement)
+/*        def img1 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg", announcement: newAnnouncement)
                     .save(flush: true)
         def img2 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg", announcement: newAnnouncement)
                 .save(flush: true)
         def img3 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg", announcement: newAnnouncement)
-                .save(flush: true)
+                .save(flush: true)*/
 //        def img1 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg").save(flush: true)
 //        def img2 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg").save(flush: true)
 //        def img3 = new Image(url: "http://www.personal.psu.edu/jyy5075/plant4.jpg").save(flush: true)
