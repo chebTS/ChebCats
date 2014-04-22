@@ -48,6 +48,7 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
+        test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.27'
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
@@ -70,6 +71,9 @@ grails.project.dependency.resolution = {
         compile ":spring-security-core:2.0-RC2"
 
         runtime ":cors:1.1.4"
+        test(":spock:0.7") {
+            exclude "spock-grails-support"
+        }
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
         //runtime ":cached-resources:1.1"

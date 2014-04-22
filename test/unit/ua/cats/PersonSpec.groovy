@@ -9,12 +9,6 @@ import spock.lang.Specification
 @TestFor(Person)
 class PersonSpec extends Specification {
 
-    def setup() {
-    }
 
-    def cleanup() {
-    }
 
-    void "test something"() {
-    }
 }
